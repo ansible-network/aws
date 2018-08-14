@@ -1,0 +1,42 @@
+---
+
+- name: Create responder cloudformation stack
+  cloudformation:
+    aws_access_key: "{{ cloud_vpn_responder_aws_access_key  }}"
+    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key  }}"
+    security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_responder_aws_region }}"
+    stack_name: "{{ cloud_vpn_name }}-responder-stack"
+    template_body: "{{ lookup('template', 'templates/aws/responder/provision.j2') }}"
+
+- name: Get responder instance facts
+  ec2_instance_facts:
+    aws_access_key: "{{ cloud_vpn_responder_aws_access_key }}"
+    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key }}"
+    security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_responder_aws_region }}"
+    filters:
+      tag:Name: "{{ cloud_vpn_name }}-responder-instance"
+      instance-state-name: running
+  register: out
+
+- name: Set responder IP fact
+  set_fact:
+    cloud_vpn_responder_public_ip: "{{ out['instances'][0]['public_ip_address'] }}"
+
+- name: Add responder host
+  add_host:
+    name: responder
+    ansible_host: "{{ cloud_vpn_responder_public_ip }}"
+    ansible_user: "{{ cloud_vpn_responder_user }}"
+    ansible_connection: "{{ cloud_vpn_responder_ansible_connection }}"
+    ansible_network_os: "{{ cloud_vpn_responder_ansible_network_os }}"
+
+- name: Wait for SSH port to be reachable
+  wait_for:
+    host: "{{ cloud_vpn_responder_public_ip }}"
+    port: 22
+
+- name: Pause for SSH daemon to settle and accept connections
+  pause:
+    seconds: "{{ cloud_vpn_pause_before_config_seconds }}"

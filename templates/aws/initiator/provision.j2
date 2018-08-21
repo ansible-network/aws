@@ -23,7 +23,7 @@ Resources:
           Value: {{ cloud_vpn_name }}-initiator-routetable
   route:
     Type: AWS::EC2::Route
-    DependsOn: internetgw
+    DependsOn: vpcgwattachment
     Properties:
       RouteTableId:
         Ref: routetable

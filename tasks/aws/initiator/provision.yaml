@@ -31,6 +31,7 @@
     ansible_user: "{{ cloud_vpn_initiator_user }}"
     ansible_connection: "{{ cloud_vpn_initiator_ansible_connection }}"
     ansible_network_os: "{{ cloud_vpn_initiator_ansible_network_os }}"
+    ansible_ssh_private_key_file: "{{ cloud_vpn_initiator_ssh_private_key_file }}"
 
 - name: Wait for SSH port to be reachable
   wait_for:

@@ -1,0 +1,2 @@
+- name: Run provider provision initiator tasks
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/{{ cloud_vpn_initiator_provisioner }}/initiator/provision.yaml"

@@ -7,7 +7,7 @@
     security_token: "{{ cloud_vpn_initiator_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_initiator_aws_region }}"
     stack_name: "{{ cloud_vpn_name }}-initiator-stack"
-    template_body: "{{ lookup('template', 'templates/aws/initiator/provision.j2') }}"
+    template_body: "{{ lookup('template', 'templates/cloud_vpn/provisioners/aws/initiator/provision.j2') }}"
 
 - name: Get initiator instance facts
   ec2_instance_facts:

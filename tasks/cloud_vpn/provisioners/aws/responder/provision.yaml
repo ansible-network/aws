@@ -7,7 +7,7 @@
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
     stack_name: "{{ cloud_vpn_name }}-responder-stack"
-    template_body: "{{ lookup('template', 'templates/aws/responder/provision.j2') }}"
+    template_body: "{{ lookup('template', 'templates/cloud_vpn/provisioners/aws/responder/provision.j2') }}"
 
 - name: Get responder instance facts
   ec2_instance_facts:

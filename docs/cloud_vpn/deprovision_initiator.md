@@ -16,6 +16,7 @@ Below is an example to deprovision a VPN initiator VM on AWS.
         tasks_from: cloud_vpn/deprovision_initiator
       vars:
         cloud_vpn_name: myvpn
+        cloud_vpn_initiator_provisioner: aws
 ```
 
 ## Notes

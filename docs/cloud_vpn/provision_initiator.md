@@ -16,6 +16,7 @@ Below is an example to provision a VM that will be the initiator of the VPN with
         tasks_from: cloud_vpn/provision_initiator
       vars:
         cloud_vpn_name: myvpn
+        cloud_vpn_initiator_provisioner: aws
         cloud_vpn_initiator_vpc_cidr: 10.0.0.0/16
         cloud_vpn_initiator_cidr: 10.0.0.0/24
         cloud_vpn_initiator_private_ip: 10.0.0.10

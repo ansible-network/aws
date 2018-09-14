@@ -16,6 +16,7 @@ Below is an example to provision a VM that will be the responder of the VPN with
         tasks_from: cloud_vpn/provision_responder
       vars:
         cloud_vpn_name: myvpn
+        cloud_vpn_responder_provisioner: aws
         cloud_vpn_responder_vpc_cidr: 10.0.0.0/16
         cloud_vpn_responder_cidr: 10.0.0.0/24
         cloud_vpn_responder_private_ip: 10.0.0.10

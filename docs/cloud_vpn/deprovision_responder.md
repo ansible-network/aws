@@ -15,6 +15,7 @@ Below is an example to deprovision a VPN responder VM on AWS.
         name: ansible-network.aws
         tasks_from: cloud_vpn/deprovision_responder
       vars:
+        cloud_vpn_responder_provisioner: aws
         cloud_vpn_name: myvpn
 ```
 

@@ -1,0 +1,4 @@
+major_changes:
+- 2.7 release of the ``aws`` Ansible role.
+minor_changes:
+- Use include_role defaults_from and remove set defaults task files

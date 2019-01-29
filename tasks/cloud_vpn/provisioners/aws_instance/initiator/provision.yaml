@@ -1,0 +1,25 @@
+---
+
+- name: Create initiator cloudformation instance stack
+  cloudformation:
+    aws_access_key: "{{ cloud_vpn_initiator_aws_access_key  }}"
+    aws_secret_key: "{{ cloud_vpn_initiator_aws_secret_key  }}"
+    security_token: "{{ cloud_vpn_initiator_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_initiator_aws_region }}"
+    stack_name: "{{ cloud_vpn_name }}-initiator-instance-stack"
+    template_body: "{{ lookup('template', 'templates/cloud_vpn/provisioners/aws_instance/initiator/provision.j2') }}"
+
+- name: Get initiator instance facts
+  ec2_instance_facts:
+    aws_access_key: "{{ cloud_vpn_initiator_aws_access_key }}"
+    aws_secret_key: "{{ cloud_vpn_initiator_aws_secret_key }}"
+    security_token: "{{ cloud_vpn_initiator_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_initiator_aws_region }}"
+    filters:
+      tag:Name: "{{ cloud_vpn_name }}-initiator-instance"
+      instance-state-name: running
+  register: out
+
+- name: Set initiator IP fact
+  set_fact:
+    cloud_vpn_initiator_public_ip: "{{ out['instances'][0]['public_ip_address'] }}"

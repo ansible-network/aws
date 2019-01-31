@@ -13,18 +13,21 @@ Resources:
       VpcId:
         Ref: vpc
       CidrBlock: {{ cloud_vpn_responder_cidr }}
-  privateroutetable:
+      Tags:
+        - Key: Name
+          Value: {{ cloud_vpn_name }}-responder-subnet
+  routetable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId:
         Ref: vpc
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-responder-privateroutetable
+          Value: {{ cloud_vpn_name }}-responder-routetable
   subnetroutetableassociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       RouteTableId:
-        Ref: privateroutetable
+        Ref: routetable
       SubnetId:
         Ref: subnet

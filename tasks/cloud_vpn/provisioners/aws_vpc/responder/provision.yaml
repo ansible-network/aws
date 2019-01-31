@@ -30,7 +30,7 @@
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
     filters:
-      vpc-id: "{{ cloud_vpn_responder_vpc_id }}"
+      tag:Name: "{{ cloud_vpn_name }}-responder-routetable"
   register: out
 
 - name: Set responder route table ID
@@ -44,7 +44,7 @@
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
     filters:
-      vpc-id: "{{ cloud_vpn_responder_vpc_id }}"
+      tag:Name: "{{ cloud_vpn_name }}-responder-subnet"
   register: out
 
 - name: Set responder subnet ID

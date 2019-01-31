@@ -1,13 +1,13 @@
 ---
 
-- name: Create responder cloudformation VPC stack
+- name: Create responder cloudformation IGW stack
   cloudformation:
     aws_access_key: "{{ cloud_vpn_responder_aws_access_key  }}"
     aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key  }}"
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
-    stack_name: "{{ cloud_vpn_name }}-responder-vpc-stack"
-    template_body: "{{ lookup('template', 'templates/cloud_vpn/provisioners/aws_vpc/responder/provision.j2') }}"
+    stack_name: "{{ cloud_vpn_name }}-responder-igw-stack"
+    template_body: "{{ lookup('template', 'templates/cloud_vpn/provisioners/aws_igw/responder/provision.j2') }}"
 
 - name: Get VPC facts
   ec2_vpc_net_facts:
@@ -36,17 +36,3 @@
 - name: Set responder route table ID
   set_fact:
     cloud_vpn_responder_route_table_id: "{{ out['route_tables'][0]['id'] }}"
-
-- name: Get subnet facts
-  ec2_vpc_subnet_facts:
-    aws_access_key: "{{ cloud_vpn_responder_aws_access_key }}"
-    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key }}"
-    security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
-    region: "{{ cloud_vpn_responder_aws_region }}"
-    filters:
-      vpc-id: "{{ cloud_vpn_responder_vpc_id }}"
-  register: out
-
-- name: Set responder subnet ID
-  set_fact:
-    cloud_vpn_responder_subnet_id: "{{ out['subnets'][0]['id'] }}"

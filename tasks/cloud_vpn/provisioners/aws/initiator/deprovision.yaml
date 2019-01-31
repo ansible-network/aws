@@ -1,8 +1,12 @@
 ---
 
-- name: Include aws_vpc deprovisioner tasks if needed
-  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_vpc/initiator/deprovision.yaml"
-  when: cloud_vpn_initiator_vpc is not defined
-
 - name: Include aws_instance deprovisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_instance/initiator/deprovision.yaml"
+
+- name: Include aws_igw deprovisioner tasks if needed
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_igw/initiator/deprovision.yaml"
+  when: cloud_vpn_initiator_igw_id is not defined
+
+- name: Include aws_vpc deprovisioner tasks if needed
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_vpc/initiator/deprovision.yaml"
+  when: cloud_vpn_initiator_vpc_id is not defined

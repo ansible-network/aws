@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  internetgw:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: {{ cloud_vpn_name }}-initiator-internetgw
+  vpcgwattachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId:
+        Ref: internetgw
+      VpcId: {{ cloud_vpn_initiator_vpc_id }}
+  route:
+    Type: AWS::EC2::Route
+    DependsOn: vpcgwattachment
+    Properties:
+      RouteTableId: {{ cloud_vpn_initiator_route_table_id }}
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: internetgw

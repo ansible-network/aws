@@ -30,7 +30,7 @@
     security_token: "{{ cloud_vpn_initiator_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_initiator_aws_region }}"
     filters:
-      vpc-id: "{{ cloud_vpn_initiator_vpc_id }}"
+      tag:Name: "{{ cloud_vpn_name }}-initiator-routetable"
   register: out
 
 - name: Set initiator route table ID
@@ -44,7 +44,7 @@
     security_token: "{{ cloud_vpn_initiator_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_initiator_aws_region }}"
     filters:
-      vpc-id: "{{ cloud_vpn_initiator_vpc_id }}"
+      tag:Name: "{{ cloud_vpn_name }}-initiator-subnet"
   register: out
 
 - name: Set initiator subnet ID

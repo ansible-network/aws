@@ -2,3 +2,4 @@
 
 - name: Include aws_vpc provisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_vpc/responder/provision.yaml"
+  when: cloud_vpn_responder_vpc_id is not defined

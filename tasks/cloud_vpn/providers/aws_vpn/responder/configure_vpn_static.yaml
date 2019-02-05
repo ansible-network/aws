@@ -6,7 +6,7 @@
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
     stack_name: "{{ cloud_vpn_name }}-responder-vpn-stack"
-    template_body: "{{ lookup('template', 'templates/providers/aws_vpn/responder/configure_static.j2') }}"
+    template_body: "{{ lookup('template', 'templates/cloud_vpn/providers/aws_vpn/responder/configure_static.j2') }}"
 
 - name: Get VPN facts
   ec2_vpc_vpn_facts:

@@ -2,11 +2,11 @@
 
 - name: Include aws_vpc provisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_vpc/initiator/provision.yaml"
-  when: cloud_vpn_initiator_vpc_id is not defined
+  when: cloud_vpn_initiator_manage_vpc
 
 - name: Include aws_igw provisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_igw/initiator/provision.yaml"
-  when: cloud_vpn_initiator_igw_id is not defined
+  when: cloud_vpn_initiator_manage_gw
 
 - name: Include aws_instance provisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_instance/initiator/provision.yaml"

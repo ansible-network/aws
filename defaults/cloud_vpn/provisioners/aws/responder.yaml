@@ -1,0 +1,3 @@
+---
+cloud_vpn_responder_manage_vpc: true
+cloud_vpn_responder_manage_gw: true

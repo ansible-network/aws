@@ -1,0 +1,10 @@
+---
+
+- name: Get initiator cloudformation VPC stack facts
+  cloudformation_facts:
+    aws_access_key: "{{ cloud_vpn_initiator_aws_access_key  }}"
+    aws_secret_key: "{{ cloud_vpn_initiator_aws_secret_key  }}"
+    security_token: "{{ cloud_vpn_initiator_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_initiator_aws_region }}"
+    stack_name: "{{ cloud_vpn_name }}-initiator-vpc-stack"
+  register: cloud_vpn_initiator_vpc_facts

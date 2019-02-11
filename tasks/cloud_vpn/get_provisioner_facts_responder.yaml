@@ -1,0 +1,2 @@
+- name: Run responder get provisioner tasks
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/{{ cloud_vpn_responder_provisioner }}/responder/get_facts.yaml"

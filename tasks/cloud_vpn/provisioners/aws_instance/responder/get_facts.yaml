@@ -1,0 +1,10 @@
+---
+
+- name: Get responder cloudformation instance stack facts
+  cloudformation:
+    aws_access_key: "{{ cloud_vpn_responder_aws_access_key  }}"
+    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key  }}"
+    security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_responder_aws_region }}"
+    stack_name: "{{ cloud_vpn_name }}-responder-instance-stack"
+  register: cloud_vpn_responder_instance_facts

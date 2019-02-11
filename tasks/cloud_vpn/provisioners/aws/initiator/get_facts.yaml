@@ -1,0 +1,12 @@
+---
+
+- name: Include aws_vpc provisioner get facts tasks
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_vpc/initiator/get_facts.yaml"
+  when: cloud_vpn_initiator_manage_vpc
+
+- name: Include aws_igw provisioner get facts tasks
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_igw/initiator/get_facts.yaml"
+  when: cloud_vpn_initiator_manage_gw
+
+- name: Include aws_instance provisioner get facts tasks
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_instance/initiator/get_facts.yaml"

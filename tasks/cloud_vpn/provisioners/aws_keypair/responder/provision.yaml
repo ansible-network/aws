@@ -1,0 +1,10 @@
+---
+
+- name: Create responder keypair
+  ec2_key:
+    aws_access_key: "{{ cloud_vpn_responder_aws_access_key  }}"
+    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key  }}"
+    security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
+    region: "{{ cloud_vpn_responder_aws_region }}"
+    name: "{{ cloud_vpn_responder_key_name }}"
+    key_material: "{{ lookup('pipe', 'ssh-keygen -y -f ' + cloud_vpn_responder_ssh_private_key_file) }}"

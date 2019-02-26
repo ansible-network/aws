@@ -6,5 +6,5 @@
     aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key  }}"
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
-    name: "{{ cloud_vpn_name }}-responder-keypair"
+    name: "{{ cloud_vpn_responder_key_name }}"
     state: absent

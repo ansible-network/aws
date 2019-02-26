@@ -3,6 +3,10 @@
 - name: Include aws_instance deprovisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_instance/responder/deprovision.yaml"
 
+- name: Include aws_keypair deprovisioner tasks if needed
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_keypair/responder/deprovision.yaml"
+  when: cloud_vpn_responder_manage_keypair
+
 - name: Include aws_igw deprovisioner tasks if needed
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_igw/responder/deprovision.yaml"
   when: cloud_vpn_responder_igw_id is not defined

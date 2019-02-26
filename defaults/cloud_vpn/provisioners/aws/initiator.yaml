@@ -1,3 +1,4 @@
 ---
 cloud_vpn_initiator_manage_vpc: true
 cloud_vpn_initiator_manage_gw: true
+cloud_vpn_initiator_manage_keypair: true

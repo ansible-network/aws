@@ -8,5 +8,9 @@
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_igw/responder/provision.yaml"
   when: cloud_vpn_responder_manage_gw
 
+- name: Include aws_keypair provisioner tasks
+  include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_keypair/responder/provision.yaml"
+  when: cloud_vpn_responder_manage_keypair
+
 - name: Include aws_instance provisioner tasks
   include_tasks: "{{ role_path }}/tasks/cloud_vpn/provisioners/aws_instance/responder/provision.yaml"

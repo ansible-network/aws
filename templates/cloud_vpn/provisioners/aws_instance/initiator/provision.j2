@@ -3,7 +3,7 @@ Resources:
   securitygroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: {{ cloud_vpn_name }}-initiator-securitygroup
+      GroupDescription: {{ cloud_vpn_initiator_securitygroup_name }}
       VpcId: {{ cloud_vpn_initiator_vpc_id }}
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -33,4 +33,4 @@ Resources:
           SubnetId: {{ cloud_vpn_initiator_subnet_id }}
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-initiator-instance
+          Value: {{ cloud_vpn_initiator_instance_name }}

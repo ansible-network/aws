@@ -1,8 +1,9 @@
 ---
 - name: Delete responder cloudformation IGW stack
+  run_once: true
   cloudformation:
-    aws_access_key: "{{ cloud_vpn_responder_aws_access_key  }}"
-    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key  }}"
+    aws_access_key: "{{ cloud_vpn_responder_aws_access_key | default(omit) }}"
+    aws_secret_key: "{{ cloud_vpn_responder_aws_secret_key | default(omit) }}"
     security_token: "{{ cloud_vpn_responder_aws_security_token | default(omit) }}"
     region: "{{ cloud_vpn_responder_aws_region }}"
     stack_name: "{{ cloud_vpn_name }}-responder-igw-stack"

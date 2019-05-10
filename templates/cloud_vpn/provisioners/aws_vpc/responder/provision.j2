@@ -6,7 +6,7 @@ Resources:
       CidrBlock: {{ cloud_vpn_responder_vpc_cidr }}
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-responder-vpc
+          Value: {{ cloud_vpn_responder_vpc_name }}
   subnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -15,7 +15,7 @@ Resources:
       CidrBlock: {{ cloud_vpn_responder_cidr }}
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-responder-subnet
+          Value: {{ cloud_vpn_responder_subnet_name }}
   routetable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -23,7 +23,7 @@ Resources:
         Ref: vpc
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-responder-routetable
+          Value: {{ cloud_vpn_responder_routetable_name }}
   subnetroutetableassociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:

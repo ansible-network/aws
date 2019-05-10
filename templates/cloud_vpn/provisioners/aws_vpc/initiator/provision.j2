@@ -6,7 +6,7 @@ Resources:
       CidrBlock: {{ cloud_vpn_initiator_vpc_cidr }}
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-initiator-vpc
+          Value: {{ cloud_vpn_initiator_vpc_name }}
   subnet:
     Type: AWS::EC2::Subnet
     Properties:
@@ -15,7 +15,7 @@ Resources:
       CidrBlock: {{ cloud_vpn_initiator_cidr }}
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-initiator-subnet
+          Value: {{ cloud_vpn_initiator_subnet_name }}
   routetable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -23,7 +23,7 @@ Resources:
         Ref: vpc
       Tags:
         - Key: Name
-          Value: {{ cloud_vpn_name }}-initiator-routetable
+          Value: {{ cloud_vpn_initiator_routetable_name }}
   subnetroutetableassociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
